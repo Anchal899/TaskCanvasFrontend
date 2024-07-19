@@ -1,0 +1,82 @@
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+<div class="flex flex-col pl-32">
+    <div class="flex justify-between items-center mt-7">
+        <h2 class="font bold text-xl">Manage your tasks</h2>
+       
+      <button class="btn btn-icon btn-rounded btn-secondary" (click)="exportCSV()">
+       Download CSV
+    </button>
+        <button class="btn btn-icon btn-rounded btn-primary" (click)="openSlidePanel()">
+            <i class="ri-add-line ri-lg"></i>
+            Add Task
+        </button>
+
+    </div>
+    <div class="mt-3 bg-white shadow">
+        <app-todo-card/>
+    </div>
+</div>
+<app-slide-panel [headerText]="'Todo Details'" [isOpen]="isSlidePanelOpen" (OnClose)="onCloseSlidePanel()">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+        <div class="form-group mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" id="title" class="form-control"
+            [class]="{'invalid': todoForm.get('title')?.hasError('required') && todoForm.get('title')?.touched, 'valid':todoForm.get('title')?.valid}"
+            placeholder="Title" formControlName="title">
+          @if (todoForm.get('title')?.hasError('required') && todoForm.get('title')?.touched) {
+          <span class="form-error">Title is required.</span>
+          }
+        </div>
+        <div class="form-group mb-3">
+          <label for="description" class="form-label">Description</label>
+    
+          <textarea name="" rows="10" class="form-control"
+            [class]="{'invalid': todoForm.get('description')?.hasError('required') && todoForm.get('description')?.touched, 'valid':todoForm.get('description')?.valid}"
+            placeholder="Description" formControlName="description"></textarea>
+          @if (todoForm.get('description')?.hasError('required') && todoForm.get('description')?.touched) {
+          <span class="form-error">Description is required.</span>
+          }
+        </div>
+        <div class="form-group mb-3">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-select"
+            [class]="{'invalid': todoForm.get('status')?.hasError('required') && todoForm.get('status')?.touched, 'valid':todoForm.get('status')?.valid}"
+            formControlName="status">
+            @for (item of todoStatus; track $index) {
+            <option [value]="item">{{item}}</option>
+            }
+          </select>
+          @if (todoForm.get('status')?.hasError('required') && todoForm.get('status')?.touched) {
+          <span class="form-error">status is required.</span>
+          }
+        </div>
+        <div class="form-group mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <select class="form-select"
+              [class]="{'invalid': todoForm.get('priority')?.hasError('required') && todoForm.get('priority')?.touched, 'valid':todoForm.get('priority')?.valid}"
+              formControlName="priority">
+              @for (item of todoPriority; track $index) {
+              <option [value]="item">{{item}}</option>
+              }
+            </select>
+            @if (todoForm.get('priority')?.hasError('required') && todoForm.get('priority')?.touched) {
+            <span class="form-error">priority is required.</span>
+            }
+          </div>
+        
+          <div class="form-group mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="text" id="date" class="form-control"
+              [class]="{'invalid': todoForm.get('date')?.hasError('required') && todoForm.get('date')?.touched, 'valid':todoForm.get('date')?.valid}"
+              placeholder="YYYY-MM-DDTHH:MM" formControlName="date">
+            @if (todoForm.get('date')?.hasError('required') && todoForm.get('date')?.touched) {
+            <span class="form-error">Date is required.</span>
+            }
+          </div>
+        <div class="form-group mb-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="onCloseSlidePanel()">Cancel</button>
+          </div>
+      </form>
+</app-slide-panel>
+

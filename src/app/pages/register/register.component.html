@@ -1,0 +1,25 @@
+<div class="flex flex-col gap-2 p-6 bg-white rounded-lg shadow">
+    <h5 class="text-xl mb-2 font-bold text-gray-900">Register Here</h5>
+    <form action="" [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+        <div class="form-group mb-3">
+            <label for="">Username</label>
+            <input type="text" placeholder="Enter your name" class="form-control" formControlName="username" >
+            
+        </div>
+        <div class="form-group mb-3">
+            <label for="">Email</label>
+            <input type="text" placeholder="Enter your email" class="form-control" formControlName="email" >
+           
+        
+        </div>
+        <div class="form-group mb-3">
+            <label for="">Password</label>
+            <input type="text" placeholder="Enter your password" class="form-control" formControlName="password" >
+           
+        </div>
+        <div class="form-group mb-3">
+        <a routerLink="/logout" (click)="(Gologin())"  class="text-blue-900 cursor-pointer">Login Here</a>
+    </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
