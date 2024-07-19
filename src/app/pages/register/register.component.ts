@@ -17,7 +17,7 @@ import Swal from'sweetalert2';
 
 export class RegisterComponent implements OnInit{
   registerForm: FormGroup;
-  BASE_URL='https://taskcanvasbackend.onrender.com';
+   BASE_URL=environment.BASE_URL;
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
     
   }
