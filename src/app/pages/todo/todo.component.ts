@@ -42,7 +42,7 @@ export function onSortChange(event: Event): string {
 
 export class TodoComponent implements OnInit {
   todoForm: FormGroup;
-  BASE_URL='https://taskcanvasbackend.onrender.com';
+   BASE_URL=environment.BASE_URL;
   model: NgbDateStruct;
   tasks: Task[] = [];
   todoStatus = ITodoStatus;
