@@ -43,7 +43,7 @@ export class LoginComponent {
     Swal.fire("Error","Please enter a valid email");
    }
    else{
-    this.http.post(`${this.BASE_URL}/login`,user,{
+    this.http.post('https://taskcanvasbackend.onrender.com/login',user,{
       withCredentials:true     //to send jwt automatically to cookies
     }).subscribe(()=>this.router.navigate(['todo']),(err)=>{
       Swal.fire("Error",err.error.message,"error");
